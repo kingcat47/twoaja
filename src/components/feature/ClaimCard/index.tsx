@@ -15,7 +15,9 @@ export default function ClaimCard({ claim, currentUser, onComplete }: ClaimCardP
   const isMine = claim.createdBy === currentUser
   const claimer = USERS[claim.createdBy]
   const target = USERS[claim.targetUser]
-  const date = new Date(claim.createdAt).toLocaleDateString('ko-KR', { month: 'short', day: 'numeric' })
+  const startDate = new Date(claim.createdAt)
+  const endDate = new Date(startDate.getTime() + claim.hours * 60 * 60 * 1000)
+  const fmt = (d: Date) => d.toLocaleString('ko-KR', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })
 
   return (
     <motion.div
@@ -36,7 +38,7 @@ export default function ClaimCard({ claim, currentUser, onComplete }: ClaimCardP
           </p>
           <p className={s.hours}>{claim.hours}시간 압수</p>
           {claim.memo && <p className={s.memo}>{claim.memo}</p>}
-          <p className={s.date}>{date}</p>
+          <p className={s.date}>{fmt(startDate)} ~ {fmt(endDate)}</p>
         </div>
       </div>
 

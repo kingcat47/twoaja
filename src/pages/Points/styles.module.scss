@@ -60,11 +60,6 @@
   border-radius: var(--radius-card);
   padding: 16px;
   box-shadow: var(--shadow-card);
-  border: 1.5px solid transparent;
-
-  &.statMine {
-    border-color: var(--primary);
-  }
 }
 
 .statHeader {
