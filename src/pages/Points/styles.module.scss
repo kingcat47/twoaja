@@ -1,0 +1,151 @@
+.container {
+  min-height: 100dvh;
+  background: var(--surface);
+  padding: 0 var(--padding) 100px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.header {
+  padding: 24px 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.addBtn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 14px;
+  border-radius: 99px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Pretendard', sans-serif;
+  cursor: pointer;
+  flex-shrink: 0;
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+}
+
+.title {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.5px;
+  margin: 0 0 4px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--text-subtle);
+  margin: 0;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.statCard {
+  background: var(--white);
+  border-radius: var(--radius-card);
+  padding: 16px;
+  box-shadow: var(--shadow-card);
+  border: 1.5px solid transparent;
+
+  &.statMine {
+    border-color: var(--primary);
+  }
+}
+
+.statHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.statAvatar {
+  font-size: 22px;
+}
+
+.statName {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.statRows {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.statRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.statLabel {
+  font-size: 12px;
+  color: var(--text-subtle);
+}
+
+.statValue {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+
+  &.danger {
+    color: var(--danger);
+  }
+
+  &.point {
+    color: var(--primary);
+  }
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.sectionTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-subtle);
+  margin: 0;
+}
+
+.claimList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 32px 0;
+  color: var(--text-subtle);
+  font-size: 14px;
+}
+
+.emptyEmoji {
+  font-size: 32px;
+}
+

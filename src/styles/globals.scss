@@ -1,0 +1,42 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css");
+
+:root {
+  --primary: #3182F6;
+  --primary-light: #EBF3FE;
+  --text: #191F28;
+  --text-subtle: #8B95A1;
+  --surface: #F2F4F6;
+  --white: #FFFFFF;
+  --border: #E8E8E8;
+  --danger: #F04452;
+  --success: #00C471;
+  --shadow-card: 0 8px 20px rgba(0, 0, 0, 0.04);
+  --shadow-elevated: 0 16px 40px rgba(0, 0, 0, 0.10);
+  --radius-card: 20px;
+  --radius-btn: 12px;
+  --padding: 20px;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: "Pretendard", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+}
+
+// 스크롤바 숨기기
+::-webkit-scrollbar {
+    display: none;
+}
+
+* {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}

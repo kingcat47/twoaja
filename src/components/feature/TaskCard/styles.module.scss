@@ -1,0 +1,142 @@
+.card {
+  background: var(--white);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  border: 1.5px solid transparent;
+  transition: border-color 0.2s;
+
+  &.overdue {
+    border-color: #FFEAA7;
+    background: #FFFDF0;
+  }
+
+  &.done {
+    opacity: 0.5;
+  }
+}
+
+.imageThumb {
+  width: 100%;
+  height: 140px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.category {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 99px;
+}
+
+.deadline {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 12px;
+  color: var(--text-subtle);
+
+  &.overdueText {
+    color: var(--danger);
+    font-weight: 600;
+  }
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.4;
+
+  &.strikethrough {
+    text-decoration: line-through;
+    color: var(--text-subtle);
+  }
+}
+
+.desc {
+  font-size: 13px;
+  color: var(--text-subtle);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.bottomRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.assignee {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.assigneeAvatar {
+  font-size: 16px;
+}
+
+.assigneeName {
+  font-size: 13px;
+  color: var(--text-subtle);
+}
+
+.actions {
+  display: flex;
+  gap: 6px;
+}
+
+.nudgeBtn,
+.doneBtn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.nudgeBtn {
+  background: #FFF3CD;
+  color: #856404;
+
+  &.nudged {
+    background: var(--surface);
+    color: var(--text-subtle);
+    cursor: default;
+  }
+
+  &:disabled {
+    cursor: default;
+  }
+}
+
+.doneBtn {
+  background: var(--primary-light);
+  color: var(--primary);
+}

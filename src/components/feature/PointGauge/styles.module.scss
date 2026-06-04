@@ -1,0 +1,87 @@
+.container {
+  background: var(--white);
+  border-radius: var(--radius-card);
+  padding: 20px;
+  box-shadow: var(--shadow-card);
+}
+
+.header {
+  margin-bottom: 16px;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.users {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &.right {
+    flex-direction: row-reverse;
+  }
+}
+
+.avatar {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  flex: 1;
+
+  .right & {
+    text-align: right;
+  }
+}
+
+.point {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-subtle);
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  min-width: 48px;
+  justify-content: flex-end;
+
+  &.mine {
+    color: var(--primary);
+  }
+
+  .right & {
+    justify-content: flex-start;
+  }
+}
+
+.unit {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.gaugeTrack {
+  height: 8px;
+  background: var(--surface);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.gaugeBar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary) 0%, #74B9FF 100%);
+  border-radius: 99px;
+}
