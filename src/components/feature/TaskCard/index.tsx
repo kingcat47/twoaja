@@ -1,9 +1,6 @@
-import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { CheckCircle2, Bell, Clock } from 'lucide-react'
+import { CheckCircle2, Clock } from 'lucide-react'
 import { USERS } from '@/store'
-import { sendNudgeEmail } from '@/lib/emailjs'
-import { showToast } from '@/lib/toast'
 import type { Task, UserId } from '@/types'
 import s from './styles.module.scss'
 
@@ -34,34 +31,12 @@ interface TaskCardProps {
 }
 
 export default function TaskCard({ task, currentUser, onComplete, onClick }: TaskCardProps) {
-  const [nudging, setNudging] = useState(false)
-  const [nudged, setNudged] = useState(false)
-
   const isOverdue = task.status === 'overdue'
   const isDone = task.status === 'done'
-  const isAssignedToOther = task.assignedTo !== currentUser
-  const canNudge = isAssignedToOther && (isOverdue || task.status === 'pending')
+  const canNudge = task.assignedTo !== currentUser && !isDone
 
   const assignee = USERS[task.assignedTo]
   const deadlineLabel = formatDeadline(task.deadline)
-
-  const handleNudge = async () => {
-    if (nudging || nudged) return
-    setNudging(true)
-    try {
-      await sendNudgeEmail({
-        toEmail: assignee.email,
-        toName: assignee.name,
-        fromName: USERS[currentUser].name,
-        taskTitle: task.title,
-        deadline: new Date(task.deadline).toLocaleString('ko-KR'),
-      })
-      setNudged(true)
-      showToast('독촉 메일을 보냈어요')
-    } finally {
-      setNudging(false)
-    }
-  }
 
   return (
     <motion.div
@@ -105,23 +80,12 @@ export default function TaskCard({ task, currentUser, onComplete, onClick }: Tas
 
           <div className={s.actions}>
             {canNudge && (
-              <motion.button
-                className={`${s.nudgeBtn} ${nudged ? s.nudged : ''}`}
-                onClick={handleNudge}
-                whileTap={{ scale: 0.9 }}
-                animate={nudging ? { rotate: [0, -4, 4, -4, 4, 0] } : {}}
-                transition={{ duration: 0.5 }}
-                disabled={nudging || nudged}
-              >
-                <Bell size={14} />
-                {nudged ? '독촉 완료' : '독촉하기'}
-              </motion.button>
+              <span className={s.nudgeHint}>탭해서 독촉하기 →</span>
             )}
-
             {!isDone && task.assignedTo === currentUser && (
               <motion.button
                 className={s.doneBtn}
-                onClick={() => onComplete(task.id)}
+                onClick={(e) => { e.stopPropagation(); onComplete(task.id) }}
                 whileTap={{ scale: 0.9 }}
               >
                 <CheckCircle2 size={14} />

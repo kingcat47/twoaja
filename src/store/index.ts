@@ -19,7 +19,9 @@ export const USERS: Record<UserId, User> = {
 
 interface AppStore {
   currentUser: UserId | null
+  _hasHydrated: boolean
   setCurrentUser: (id: UserId) => void
+  setHasHydrated: (val: boolean) => void
   logout: () => void
 }
 
@@ -27,9 +29,16 @@ export const useAppStore = create<AppStore>()(
   persist(
     (set) => ({
       currentUser: null,
+      _hasHydrated: false,
       setCurrentUser: (id) => set({ currentUser: id }),
+      setHasHydrated: (val) => set({ _hasHydrated: val }),
       logout: () => set({ currentUser: null }),
     }),
-    { name: 'twoaja-user' }
+    {
+      name: 'twoaja-user',
+      onRehydrateStorage: () => (state) => {
+        state?.setHasHydrated(true)
+      },
+    }
   )
 )

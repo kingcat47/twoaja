@@ -16,7 +16,7 @@ type Tab = 'mine' | 'theirs'
 
 export default function Dashboard() {
   const navigate = useNavigate()
-  const { currentUser, logout } = useAppStore()
+  const { currentUser, logout, _hasHydrated } = useAppStore()
   const { tasks, loading, addTask, completeTask, deleteTask } = useTasks()
   const [tab, setTab] = useState<Tab>('mine')
   const [sheetOpen, setSheetOpen] = useState(false)
@@ -35,10 +35,11 @@ export default function Dashboard() {
   }, [])
 
   useEffect(() => {
+    if (!_hasHydrated) return
     if (!currentUser) navigate('/')
-  }, [currentUser, navigate])
+  }, [_hasHydrated, currentUser, navigate])
 
-  if (!currentUser) return null
+  if (!_hasHydrated || !currentUser) return null
 
   const otherId: UserId = currentUser === 'userA' ? 'userB' : 'userA'
   const user = USERS[currentUser]
