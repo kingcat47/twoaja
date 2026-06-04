@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Delete } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
@@ -15,8 +15,12 @@ const KEYS = ['1','2','3','4','5','6','7','8','9','','0','⌫']
 
 export default function ProfileSelect() {
   const navigate = useNavigate()
-  const setCurrentUser = useAppStore((state) => state.setCurrentUser)
+  const { setCurrentUser, currentUser, _hasHydrated } = useAppStore()
   const [selectedUser, setSelectedUser] = useState<UserId | null>(null)
+
+  useEffect(() => {
+    if (_hasHydrated && currentUser) navigate('/dashboard', { replace: true })
+  }, [_hasHydrated, currentUser, navigate])
   const [pin, setPin] = useState('')
   const [error, setError] = useState(false)
 
